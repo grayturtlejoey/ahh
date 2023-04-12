@@ -85,7 +85,7 @@ try:
         cv2.rectangle(normalized_image, (cX-3, cY-3), (cX+3, cY+3), (255, 255, 255), 5, 1)
 
         tilt = cX - 320
-        tango.setTarget(0,6800)
+        tango.setTarget(0,5200)
         if(tilt > 30):
             turn = 5600;
             tango.setTarget(1, turn)
