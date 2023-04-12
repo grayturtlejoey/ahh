@@ -72,8 +72,11 @@ try:
         normalized_image = cv2.Canny(image=normalized_image, threshold1=80, threshold2=200)
  
         cm = cv2.moments(normalized_image,True)
-        cX = int(cm['m10']/cm['m00'])
-        cY = int(cm['m01']/cm['m00'])
+        if cm["m00"]!=0:
+            cX = int(cm['m10']/cm['m00'])
+            cY = int(cm['m01']/cm['m00'])
+        else:
+            cX, cY = 0,0
         print((cX,cY))
         cv2.rectangle(normalized_image, (cX-3, cY-3), (cX+3, cY+3), (255, 255, 255), 5, 1)
 
