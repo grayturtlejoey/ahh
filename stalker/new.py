@@ -68,7 +68,7 @@ try:
         depth_colormap_dim = depth_colormap.shape
         color_colormap_dim = color_image.shape
 
-        normalized_image = cv2.GaussianBlur(normalized_image,normalized_image,5)
+        normalized_image = cv2.GaussianBlur(normalized_image,normalized_image,(5,5))
 
 
 
