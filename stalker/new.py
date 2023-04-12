@@ -83,7 +83,7 @@ try:
         tilt = cY - 320
         if(cY > 50):
             print("left")
-        if(cy < -50):
+        elif(cY < -50):
             print("right")
         else:
             print("straight")
