@@ -80,10 +80,10 @@ try:
         print((cX,cY))
         cv2.rectangle(normalized_image, (cX-3, cY-3), (cX+3, cY+3), (255, 255, 255), 5, 1)
 
-        tilt = cY - 320
-        if(cY > 50):
+        tilt = cX - 320
+        if(tilt > 50):
             print("left")
-        elif(cY < -50):
+        elif(tilt < -50):
             print("right")
         else:
             print("straight")
