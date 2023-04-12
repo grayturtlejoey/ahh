@@ -68,7 +68,9 @@ try:
         depth_colormap_dim = depth_colormap.shape
         color_colormap_dim = color_image.shape
 
-        map = np.zeros((depth_colormap_dim[0], 2 * depth_colormap_dim[1], depth_colormap_dim[2]), dtype=np.uint8)
+        normalized_image = cv2.GaussianBlur(normalized_image,normalized_image,5)
+
+
 
         # If depth and color resolutions are different, resize color image to match depth image for display
 
