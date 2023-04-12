@@ -1,6 +1,7 @@
 import pyrealsense2 as rs
 import numpy as np
 import cv2
+from maestro import Controller
 
 
 pipeline = rs.pipeline()
@@ -82,9 +83,9 @@ try:
 
         tilt = cX - 320
         if(tilt > 30):
-            print("left")
-        elif(tilt < -30):
             print("right")
+        elif(tilt < -30):
+            print("left")
         else:
             print("straight")
 
