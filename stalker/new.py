@@ -63,7 +63,7 @@ try:
         depth_colormap = cv2.applyColorMap(cv2.convertScaleAbs(depth_image, alpha=0.03), cv2.COLORMAP_JET)
         normalized_image = np.zeros((color_image.shape[0],color_image.shape[1]))
         normalized_image = cv2.normalize(color_image,normalized_image,0,255,cv2.NORM_MINMAX)
-        normalized_image = cv2.cvtColor(normalized_image, cv2.COLOR_BGR2GRAY)
+        #normalized_image = cv2.cvtColor(normalized_image, cv2.COLOR_BGR2GRAY)
 
         depth_colormap_dim = depth_colormap.shape
         color_colormap_dim = color_image.shape
