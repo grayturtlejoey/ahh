@@ -75,7 +75,7 @@ try:
             resized_color_image = cv2.resize(color_image, dsize=(depth_colormap_dim[1], depth_colormap_dim[0]), interpolation=cv2.INTER_AREA)
             images = np.hstack((resized_color_image, depth_colormap))
         else:
-            images = np.hstack((color_image, grayscale_image))
+            images = np.hstack((color_image, normalized_image))
 
 
         
