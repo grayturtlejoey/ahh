@@ -2,8 +2,8 @@ import tkinter as tk
 from maestro import Controller                                                     
 
 MOTORS = 0
-TURN = 2
-BODY = 1
+TURN = 1
+BODY = 2
 HEADTILT = 4
 HEADTURN = 3
 
