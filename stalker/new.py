@@ -85,16 +85,16 @@ try:
         cv2.rectangle(normalized_image, (cX-3, cY-3), (cX+3, cY+3), (255, 255, 255), 5, 1)
 
         tilt = cX - 320
-        tango.setTarget(0,6600)
+        tango.setTarget(0,6800)
         if(tilt > 30):
-            turn = 6400;
-            tango.setTarget(1, turn)
-        elif(tilt < -30):
             turn = 5600;
             tango.setTarget(1, turn)
+        elif(tilt < -30):
+            turn = 6400;
+            tango.setTarget(1, turn)
         else:
-            print("straight")
-
+            turn = 6000;
+            tango.setTarget(1, turn)
 
 
         # If depth and color resolutions are different, resize color image to match depth image for display
