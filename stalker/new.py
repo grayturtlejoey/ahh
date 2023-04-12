@@ -72,7 +72,11 @@ try:
         normalized_image = cv2.Canny(image=normalized_image, threshold1=80, threshold2=200)
  
         cm = cv2.moments(normalized_image,True)
-        print(cm)
+        cX = int(cm['10']/cm['00'])
+        cY = int(cm['01']/cm['00'])
+        print((cX,cY))
+
+
 
         # If depth and color resolutions are different, resize color image to match depth image for display
 
