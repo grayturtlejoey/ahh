@@ -54,17 +54,8 @@ try:
 
 
         timer = cv2.getTickCount()
-        ok, bbox = tracker.update(color_image)
-        fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)
 
-        if ok:
-            # Tracking success
-            p1 = (int(bbox[0]), int(bbox[1]))
-            p2 = (int(bbox[0] + bbox[2]), int(bbox[1] + bbox[3]))
-            cv2.rectangle(color_image, p1, p2, (255, 0, 0), 2, 1)
-        else:
-            # Tracking failure
-            cv2.putText(color_image, "Tracking failure detected", (100, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+        fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)
 
 
 
