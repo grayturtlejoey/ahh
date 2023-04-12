@@ -69,6 +69,7 @@ try:
         color_colormap_dim = color_image.shape
 
         normalized_image = cv2.GaussianBlur(normalized_image,(5,5),0)
+        normalized_image = cv2.Canny(image=normalized_image, threshold1=100, threshold2=200)
  
 
 
