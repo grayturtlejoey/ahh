@@ -88,13 +88,13 @@ try:
 
         if(tilt > 30):
             tango.setTarget(0,6000)
-            tango.setTarget(1, 5200)
+            tango.setTarget(1, 5100)
         elif(tilt < -30):
 
             tango.setTarget(0,6000)
-            tango.setTarget(1, 6800)
+            tango.setTarget(1, 6900)
         else:
-            tango.setTarget(0,5200)
+            tango.setTarget(0,5100)
             tango.setTarget(1, 6000)
 
 
