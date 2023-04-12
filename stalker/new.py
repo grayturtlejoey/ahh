@@ -113,3 +113,5 @@ finally:
 
     # Stop streaming
     pipeline.stop()
+    tango.setTarget(0, 6000)
+    tango.setTarget(1, 6000)
