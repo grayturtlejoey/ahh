@@ -6,6 +6,9 @@ from maestro import Controller
 
 pipeline = rs.pipeline()
 config = rs.config()
+tango = Controller()
+motors = 6000
+turn = 6000
 
 # Get device product line for setting a supporting resolution
 pipeline_wrapper = rs.pipeline_wrapper(pipeline)
@@ -82,10 +85,13 @@ try:
         cv2.rectangle(normalized_image, (cX-3, cY-3), (cX+3, cY+3), (255, 255, 255), 5, 1)
 
         tilt = cX - 320
+        tango.setTarget(0,6600)
         if(tilt > 30):
-            print("right")
+            turn = 6400;
+            tango.setTarget(1, turn)
         elif(tilt < -30):
-            print("left")
+            turn = 5600;
+            tango.setTarget(1, turn)
         else:
             print("straight")
 
