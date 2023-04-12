@@ -75,7 +75,7 @@ try:
         cX = int(cm['m10']/cm['m00'])
         cY = int(cm['m01']/cm['m00'])
         print((cX,cY))
-
+        cv2.rectangle(normalized_image, (cX-3, cY-3), (cX+3, cY+3), (0, 0, 255), 5, 1)
 
 
         # If depth and color resolutions are different, resize color image to match depth image for display
