@@ -88,7 +88,7 @@ try:
         tango.setAccel(1,0)
 
         tilt = cX - 320
-        if(cY<300):
+        if(cY<350):
             if(tilt > 50):
                 tango.setTarget(0,6000)
                 tango.setTarget(1, 5100)
