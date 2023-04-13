@@ -85,16 +85,16 @@ try:
         cv2.rectangle(normalized_image, (cX-3, cY-3), (cX+3, cY+3), (255, 255, 255), 5, 1)
 
         tilt = cX - 320
-
-        if(tilt > 50):
-            tango.setTarget(0,6000)
-            tango.setTarget(1, 5100)
-        elif(tilt < -50):
-            tango.setTarget(0,6000)
-            tango.setTarget(1, 6900)
-        else:
-            tango.setTarget(0,5100)
-            tango.setTarget(1, 6000)
+        if(cY<300):
+            if(tilt > 50):
+                tango.setTarget(0,6000)
+                tango.setTarget(1, 5100)
+            elif(tilt < -50):
+                tango.setTarget(0,6000)
+                tango.setTarget(1, 6900)
+            else:
+                tango.setTarget(0,5100)
+                tango.setTarget(1, 6000)
 
 
         # If depth and color resolutions are different, resize color image to match depth image for display
