@@ -86,11 +86,10 @@ try:
 
         tilt = cX - 320
 
-        if(tilt > 30):
+        if(tilt > 50):
             tango.setTarget(0,6000)
             tango.setTarget(1, 5100)
-        elif(tilt < -30):
-
+        elif(tilt < -50):
             tango.setTarget(0,6000)
             tango.setTarget(1, 6900)
         else:
