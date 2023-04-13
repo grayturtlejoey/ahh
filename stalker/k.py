@@ -35,7 +35,7 @@ while True:
         left()
     if event.event_type == keyboard.KEY_DOWN and event.name == 'd':
         right()
-    if event.event_type == keyboard.KEY_DOWN and event.name == 's':
+    if event.event_type == keyboard.KEY_DOWN and event.name == 'escape':
         stop()
         break
 
