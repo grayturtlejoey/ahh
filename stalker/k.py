@@ -27,6 +27,17 @@ while True:
     event = keyboard.read_event()
     if event.event_type == keyboard.KEY_DOWN and event.name == 'w':
         forward()
-    if event.event_type == keyboard.KEY_UP and event.name == 'w':
+    if event.event_type == keyboard.KEY_UP:
         stop()
+    if event.event_type == keyboard.KEY_DOWN and event.name == 's':
+        back()
+    if event.event_type == keyboard.KEY_DOWN and event.name == 'a':
+        left()
+    if event.event_type == keyboard.KEY_DOWN and event.name == 'd':
+        right()
+    if event.event_type == keyboard.KEY_DOWN and event.name == 's':
+        stop()
+        break
+
+
 
