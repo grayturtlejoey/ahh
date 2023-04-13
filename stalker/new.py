@@ -84,13 +84,16 @@ try:
         print((cX,cY))
         cv2.rectangle(normalized_image, (cX-3, cY-3), (cX+3, cY+3), (255, 255, 255), 5, 1)
 
+        tango.setAccel(0,0)
+        tango.setAccel(1,0)
+
         tilt = cX - 320
         if(cY<300):
             if(tilt > 50):
-                tango.setTarget(0,5800)
+                tango.setTarget(0,6000)
                 tango.setTarget(1, 5100)
             elif(tilt < -50):
-                tango.setTarget(0,5800)
+                tango.setTarget(0,6000)
                 tango.setTarget(1, 6900)
             else:
                 tango.setTarget(0,5100)

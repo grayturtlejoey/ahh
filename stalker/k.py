@@ -1,7 +1,8 @@
 import keyboard
 from maestro import Controller
 tango = Controller()
-
+tango.setAccel(0,0)
+tango.setAccel(1,0)
 def forward():
     tango.setTarget(1,6000)
     tango.setTarget(0,5000)
