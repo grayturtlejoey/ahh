@@ -32,11 +32,11 @@ while True:
         stop()
     if event.event_type == keyboard.KEY_DOWN and event.name == 's':
         back()
-    if event.event_type == keyboard.KEY_DOWN and event.name == 'a':
-        left()
     if event.event_type == keyboard.KEY_DOWN and event.name == 'd':
+        left()
+    if event.event_type == keyboard.KEY_DOWN and event.name == 'a':
         right()
-    if event.event_type == keyboard.KEY_DOWN and event.name == 'escape':
+    if event.event_type == keyboard.KEY_DOWN and event.name == 'esc':
         stop()
         break
 
