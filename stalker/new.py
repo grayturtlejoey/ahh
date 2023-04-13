@@ -87,10 +87,10 @@ try:
         tilt = cX - 320
         if(cY<300):
             if(tilt > 50):
-                tango.setTarget(0,5600)
+                tango.setTarget(0,5800)
                 tango.setTarget(1, 5100)
             elif(tilt < -50):
-                tango.setTarget(0,5600)
+                tango.setTarget(0,5800)
                 tango.setTarget(1, 6900)
             else:
                 tango.setTarget(0,5100)
