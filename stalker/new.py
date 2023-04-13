@@ -87,14 +87,17 @@ try:
         tilt = cX - 320
         if(cY<300):
             if(tilt > 50):
-                tango.setTarget(0,6000)
-                tango.setTarget(1, 5100)
+                tango.setTarget(0,5800)
+                tango.setTarget(1, 5300)
             elif(tilt < -50):
-                tango.setTarget(0,6000)
-                tango.setTarget(1, 6900)
+                tango.setTarget(0,5800)
+                tango.setTarget(1, 6700)
             else:
                 tango.setTarget(0,5100)
                 tango.setTarget(1, 6000)
+        else:
+            tango.setTarget(0,6000)
+            tango.setTarget(1,6000)
 
 
         # If depth and color resolutions are different, resize color image to match depth image for display

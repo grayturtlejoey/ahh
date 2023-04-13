@@ -22,7 +22,11 @@ def stop():
     tango.setTarget(0,6000)
     tango.setTarget(1,6000)
 
-keyboard.on_press_key("w",forward)
-keyboard.on_release_key("w",stop)
-keyboard.on_press_key("s",back)
-keyboard.on_release_key("s",stop)
+while True:
+    # Wait for the next event.
+    event = keyboard.read_event()
+    if event.event_type == keyboard.KEY_DOWN and event.name == 'w':
+        forward()
+    if event.event_type == keyboard.KEY_UP and event.name == 'w':
+        stop()
+
