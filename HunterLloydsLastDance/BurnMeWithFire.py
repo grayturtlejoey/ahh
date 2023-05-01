@@ -210,7 +210,6 @@ try:
         # Show images
         robot.tick(color_image,tango,"main")
         key = cv2.waitKey(1)
-        tickLeft()
 
         if key & 0xFF == ord('q') or key == 27:
             cv2.destroyAllWindows()
