@@ -52,10 +52,10 @@ def tickLeft():
     stop()
     time.sleep(0.2)
 
-def tickReft():
+def tickRight():
     right()
     time.sleep(0.2)
-    right()
+    stop()
     time.sleep(0.2)
 
 class StateMachine:
@@ -70,6 +70,8 @@ class StateMachine:
 
     def __init__(self):
         self.state = self.INITIAL_FIND
+        self.markerX = -1
+        self.markerY = -1
 
     def initial_find(self, frame, tango, window):
         print("Finding")
@@ -101,6 +103,9 @@ class StateMachine:
                 # marker
                 cX = int((topLeft[0] + bottomRight[0]) / 2.0)
                 cY = int((topLeft[1] + bottomRight[1]) / 2.0)
+                if(markerID==49):
+                    self.markerX = cX
+                    self.markerY = cY
                 cv2.circle(frame, (cX, cY), 4, (0, 0, 255), -1)
                 # draw the ArUco marker ID on the image
                 cv2.putText(frame, str(markerID),
@@ -112,6 +117,17 @@ class StateMachine:
         cv2.imshow('frame', frame)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
+
+        if(self.markerX>0):
+            if(self.markerX<300):
+                tickRight()
+            elif(self.markerX>340):
+                tickLeft()
+            else:
+                stop()
+                self.state = self.PRE_FIELD
+        else:
+            tickLeft()
 
     def pre_field(self, frame, tango, window):
         print("Going To Field")
