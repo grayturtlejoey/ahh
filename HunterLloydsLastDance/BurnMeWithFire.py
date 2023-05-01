@@ -38,10 +38,10 @@ def stop():
     tango.setTarget(1, 6000)
     tango.setTarget(2,6000)
     tango.setTarget(3,6000)
-    tango.setTarget(4,6000)
+    tango.setTarget(4,5000)
 
 def lookForward():
-    tango.setTarget(4,6000)
+    tango.setTarget(4,5000)
 
 def lookDown():
     tango.setTarget(4,2000)
