@@ -128,7 +128,6 @@ frames = pipeline.wait_for_frames()
 color_frame = frames.get_color_frame()
 color_image = np.asanyarray(color_frame.get_data())
 
-
 try:
     while True:
 
