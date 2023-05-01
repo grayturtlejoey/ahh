@@ -1,3 +1,5 @@
+import time
+
 import pyrealsense2
 
 import pyrealsense2 as rs
@@ -35,6 +37,11 @@ def stop():
     tango.setTarget(0, 6000)
     tango.setTarget(1, 6000)
 
+def tickLeft():
+    left()
+    time.sleep(0.3)
+    stop()
+    time.sleep(0.1)
 
 class StateMachine:
     INITIAL_FIND = 0
@@ -151,9 +158,11 @@ try:
         # Show images
         robot.tick(color_image,tango,"main")
         key = cv2.waitKey(1)
+        tickLeft()
         if key & 0xFF == ord('q') or key == 27:
             cv2.destroyAllWindows()
             break
+
 
 finally:
 
