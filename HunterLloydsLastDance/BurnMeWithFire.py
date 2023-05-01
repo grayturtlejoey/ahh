@@ -35,6 +35,7 @@ def right():
 def stop():
     tango.setTarget(0, 6000)
     tango.setTarget(1, 6000)
+    tango.setTarget(2,6000)
     tango.setTarget(3,6000)
     tango.setTarget(4,6000)
 
