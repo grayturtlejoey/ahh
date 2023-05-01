@@ -38,7 +38,7 @@ def stop():
     tango.setTarget(1, 6000)
     tango.setTarget(2,6000)
     tango.setTarget(3,6000)
-    tango.setTarget(4,5000)
+    tango.setTarget(4,5500)
 
 
 def lookForward():
