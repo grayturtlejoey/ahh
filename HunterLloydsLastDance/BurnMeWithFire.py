@@ -5,6 +5,7 @@ import pyrealsense2
 import pyrealsense2 as rs
 import numpy as np
 import cv2
+import cv2.aruco as aruco
 
 from maestro import Controller
 
@@ -72,6 +73,21 @@ class StateMachine:
 
     def initial_find(self, frame, tango, window):
         print("Finding")
+
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_250)  # Use 5x5 dictionary to find markers
+        parameters = aruco.DetectorParameters_create()  # Marker detection parameters
+        # lists of ids and the corners beloning to each id
+        corners, ids, rejected_img_points = aruco.detectMarkers(gray, aruco_dict,
+                                                                parameters=parameters)
+        if np.all(ids is not None):  # If there are markers found by detector
+            for i in range(0, len(ids)):  # Iterate in markers
+                # Estimate pose of each marker and return the values rvec and tvec---different from camera coefficients
+                rvec, tvec, markerPoints = aruco.estimatePoseSingleMarkers(corners[i], 0.02)
+                (rvec - tvec).any()  # get rid of that nasty numpy value array error
+                aruco.drawDetectedMarkers(frame, corners)  # Draw A square around the markers
+        # Display the resulting frame
+        cv2.imshow('frame', frame)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
 
@@ -172,7 +188,6 @@ try:
         # Show images
         robot.tick(color_image,tango,"main")
         key = cv2.waitKey(1)
-        tickLeft()
 
         if key & 0xFF == ord('q') or key == 27:
             cv2.destroyAllWindows()
