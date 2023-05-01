@@ -128,9 +128,6 @@ frames = pipeline.wait_for_frames()
 color_frame = frames.get_color_frame()
 color_image = np.asanyarray(color_frame.get_data())
 
-bbox = cv2.selectROI("select", color_image)
-cv2.destroyWindow("select")
-
 
 try:
     while True:
