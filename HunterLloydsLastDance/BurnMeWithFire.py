@@ -75,7 +75,7 @@ class StateMachine:
         print("Finding")
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        aruco_dict = aruco.Dictionary_get(aruco.DICT_5X5_250)  # Use 5x5 dictionary to find markers
+        aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_250)  # Use 5x5 dictionary to find markers
         parameters = aruco.DetectorParameters_create()  # Marker detection parameters
         # lists of ids and the corners beloning to each id
         corners, ids, rejected_img_points = aruco.detectMarkers(gray, aruco_dict,parameters=parameters,)
