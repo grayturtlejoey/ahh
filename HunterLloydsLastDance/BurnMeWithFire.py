@@ -36,13 +36,16 @@ def right():
 def stop():
     tango.setTarget(0, 6000)
     tango.setTarget(1, 6000)
+
+
+def zero():
+    tango.setTarget(0, 6000)
+    tango.setTarget(1, 6000)
     tango.setTarget(2,6000)
     tango.setTarget(3,6000)
     tango.setTarget(4,5500)
-
-
 def lookForward():
-    tango.setTarget(4,5000)
+    tango.setTarget(4,5500)
 
 def lookDown():
     tango.setTarget(4,2000)
@@ -68,11 +71,13 @@ class StateMachine:
     RETURN_PRE_FIELD = 5
     COLOR_HUNTER = 6
     DONE = 7
+    BLUE = [(0,0,0),(255,255,255)]
 
     def __init__(self):
         self.state = self.INITIAL_FIND
         self.markerX = -1
         self.markerY = -1
+
 
     def initial_find(self, frame, tango, window):
         print("Finding")
@@ -115,7 +120,6 @@ class StateMachine:
 
 
         # Display the resulting frame
-        cv2.imshow('frame', frame)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
 
