@@ -9,8 +9,8 @@ import cv2
 from maestro import Controller
 
 tango = Controller()
-tango.setAccel(0, 0)
 tango.setAccel(1, 0)
+tango.setAccel(0, 0)
 
 
 def forward():
@@ -32,16 +32,29 @@ def right():
     tango.setTarget(0, 6000)
     tango.setTarget(1, 7000)
 
-
 def stop():
     tango.setTarget(0, 6000)
     tango.setTarget(1, 6000)
+    tango.setTarget(3,6000)
+    tango.setTarget(4,6000)
+
+def lookForward():
+    tango.setTarget(4,6000)
+
+def lookDown():
+    tango.setTarget(4,2000)
 
 def tickLeft():
     left()
-    time.sleep(0.3)
+    time.sleep(0.2)
     stop()
-    time.sleep(0.1)
+    time.sleep(0.2)
+
+def tickReft():
+    right()
+    time.sleep(0.2)
+    right()
+    time.sleep(0.2)
 
 class StateMachine:
     INITIAL_FIND = 0
@@ -101,7 +114,7 @@ class StateMachine:
             self.done(frame, tango, window)
 
 robot = StateMachine()
-
+stop()
 # Configure depth and color streams
 pipeline = rs.pipeline()
 config = rs.config()
@@ -134,7 +147,7 @@ profile = pipeline.start(config)
 frames = pipeline.wait_for_frames()
 color_frame = frames.get_color_frame()
 color_image = np.asanyarray(color_frame.get_data())
-
+lookForward()
 try:
     while True:
 
