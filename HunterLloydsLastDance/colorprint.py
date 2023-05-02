@@ -72,7 +72,7 @@ try:
                 color = color+key+" "
 
         print(color)
-        print(color_image[320, 240],lower,upper)
+        print(hsv_image[320, 240],lower,upper)
         mask = cv2.inRange(hsv_image, lower, upper)
         cv2.namedWindow("window", cv2.WINDOW_AUTOSIZE)
         cv2.imshow("window", mask)
