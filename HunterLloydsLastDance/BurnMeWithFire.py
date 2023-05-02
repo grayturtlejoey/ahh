@@ -135,10 +135,38 @@ class StateMachine:
             tickLeft()
 
     def pre_field(self, frame, tango, window):
-        detector = cv2.SimpleBlobDetector()
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         # Detect blobs.
+        params = cv2.SimpleBlobDetector_Params()
+
+        # Set Area filtering parameters
+        params.filterByArea = True
+        params.minArea = 100
+
+        # Set Circularity filtering parameters
+        params.filterByCircularity = False
+        params.minCircularity = 0.9
+
+        # Set Convexity filtering parameters
+        params.filterByConvexity = False
+        params.minConvexity = 0.2
+
+        # Set inertia filtering parameters
+        params.filterByInertia = False
+        params.minInertiaRatio = 0.01
+
+        # Create a detector with the parameters
+        detector = cv2.SimpleBlobDetector_create(params)
+
+        # Detect blobs
+        keypoints = detector.detect(frame)
+
+        # Draw blobs on our image as red circles
+        blank = np.zeros((1, 1))
+        frame = cv2.drawKeypoints(frame, keypoints, blank, (0, 0, 255),
+                                  cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+
+        number_of_blobs = len(keypoints)
 
 
         # Show keypoints
