@@ -43,21 +43,21 @@ try:
 
         # Convert images to numpy arrays
         color_image = np.asanyarray(color_frame.get_data())
-        hsl_image = cv2.cvtColor(color_image, cv2.COLOR_BGR2HSL)
+        hls_image = cv2.cvtColor(color_image, cv2.COLOR_BGR2HLS)
 
         timer = cv2.getTickCount()
         fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)
 
         # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
         color_colormap_dim = color_image.shape
-        print(hsl_image[320, 240])
-        lower = (hsl_image[320, 240][0] - 15, hsl_image[320, 240][1] - 20, hsl_image[320, 240][2] - 45)
-        upper = (hsl_image[320, 240][0] + 15, hsl_image[320, 240][1] + 20, hsl_image[320, 240][2] + 45)
+        print(hls_image[320, 240])
+        lower = (hls_image[320, 240][0] - 15, hls_image[320, 240][1] - 40, hls_image[320, 240][2] - 20)
+        upper = (hls_image[320, 240][0] + 15, hls_image[320, 240][1] + 40, hls_image[320, 240][2] + 20)
         lower = np.asarray(lower)
         upper = np.asarray(upper)
         print(lower)
         print(upper)
-        mask = cv2.inRange(hsl_image, lower, upper)
+        mask = cv2.inRange(hls_image, lower, upper)
         cv2.namedWindow("window", cv2.WINDOW_AUTOSIZE)
         cv2.imshow("window", mask)
 
