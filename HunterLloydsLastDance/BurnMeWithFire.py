@@ -347,7 +347,7 @@ class StateMachine:
             print("Finding Color")
             self.colorName = "yellow"
             hsv_image = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-            mask = cv2.inRange(hsv_image, colorDict[self.colorName,0], colorDict[self.colorName,0])
+            mask = cv2.inRange(hsv_image, colorDict[self.colorName][0], colorDict[self.colorName][1])
     # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
             frame = cv2.cvtColor(hsv_image, cv2.COLOR_HSV_BGR)
             frame = cv2.bitwise_and(frame,frame, mask = mask)
