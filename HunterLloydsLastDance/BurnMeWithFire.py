@@ -62,7 +62,18 @@ def tickLeft():
     stop()
     time.sleep(0.5)
 
+def tickLeftFast():
+    left()
+    time.sleep(0.2)
+    stop()
+    time.sleep(0.5)
 def tickRight():
+    right()
+    time.sleep(0.2)
+    stop()
+    time.sleep(0.5)
+
+def tickRightFast():
     right()
     time.sleep(0.2)
     stop()
@@ -149,7 +160,7 @@ class StateMachine:
                 stop()
                 self.state = self.PRE_FIELD
         else:
-            tickLeft()
+            tickLeftFast()
 
     def pre_field(self, frame, tango, window):
         print("Going To Field")
@@ -303,9 +314,9 @@ class StateMachine:
                 tickLeft()
             else:
                 stop()
-                self.state = self.return_pre_field()
+                self.state = self.RETURN_PRE_FIELD
         else:
-            tickLeft()
+            tickLeftFast()
         print("Finding")
 
     def return_pre_field(self, frame, tango, window):
