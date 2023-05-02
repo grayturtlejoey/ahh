@@ -52,19 +52,19 @@ def lookDown():
 
 def tickLeft():
     left()
-    time.sleep(0.15)
+    time.sleep(0.2)
     stop()
     time.sleep(0.5)
 
 def tickRight():
     right()
-    time.sleep(0.15)
+    time.sleep(0.2)
     stop()
     time.sleep(0.5)
 
 def tickForward():
     forward()
-    time.sleep(0.3)
+    time.sleep(0.5)
     stop()
     time.sleep(0.5)
 
