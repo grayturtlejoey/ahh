@@ -90,7 +90,7 @@ class StateMachine:
         self.markerX = -1
         self.markerY = -1
         self.falseAlarm = 0
-        self.colorName = "none"
+        self.colorName = "None"
         self.newTime = time.time()
         self.timer = 7
 
@@ -231,8 +231,8 @@ class StateMachine:
 
 
         frame = cv2.cvtColor(hsv_image, cv2.COLOR_HSV2BGR)
-        frame = cv2.putText(frame, str(round(self.timer,2)), (50,50), cv2.FONT_HERSHEY_SIMPLEX,
-                            1, average_color, 2, cv2.LINE_AA)
+        frame = cv2.putText(frame, self.colorName+": "+str(round(self.timer,2)), (50,50), cv2.FONT_HERSHEY_SIMPLEX,
+                            1, (0,0,0), 2, cv2.LINE_AA)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
 
