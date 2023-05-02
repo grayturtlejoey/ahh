@@ -195,7 +195,7 @@ class StateMachine:
         cv2.rectangle(frame, (300, 220), (340, 260), (255, 0, 0), 2)
         average_color_row = np.average(frame[220:260,300:340], axis=0)
         average_color = np.average(average_color_row, axis=0)
-        print(average_color)
+        print(int(average_color))
         cv2.rectangle(frame, (300, 220), (340, 260), average_color, 2)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
