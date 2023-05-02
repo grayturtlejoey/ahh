@@ -351,7 +351,16 @@ class StateMachine:
             mask = cv2.inRange(hsv_image, colorDict[self.colorName][0], colorDict[self.colorName][1])
     # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
             frame = cv2.cvtColor(hsv_image, cv2.COLOR_HSV2BGR)
-            frame = cv2.bitwise_and(frame,frame, mask = mask)
+
+            cm = cv2.moments(mask, True)
+            if cm["m00"] != 0:
+                cX = int(cm['m10'] / cm['m00'])
+                cY = int(cm['m01'] / cm['m00'])
+            else:
+                cX, cY = 0, 0
+            print((cX, cY))
+            cv2.rectangle(frame, (cX - 3, cY - 3), (cX + 3, cY + 3), (255, 255, 255), 5, 1)
+
 
             cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
             cv2.imshow(window, frame)
