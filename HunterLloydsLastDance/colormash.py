@@ -55,12 +55,7 @@ try:
 
         hsv_image = cv2.cvtColor(color_image, cv2.COLOR_BGR2HSV)
 
-        (h, s, v) = cv2.split(hsv_image)
-        s = s/2+127
-        s = np.clip(s, 0, 255)
-        hsv_image = cv2.merge([h, s, v])
 
-        color_image = cv2.cvtColor(hsv_image,cv2.COLOR_HSV2BGR)
 
         timer = cv2.getTickCount()
         fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)
