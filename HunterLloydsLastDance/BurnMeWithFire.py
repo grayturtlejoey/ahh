@@ -74,7 +74,7 @@ class StateMachine:
     BLUE = [(0,0,0),(255,255,255)]
 
     def __init__(self):
-        self.state = self.PRE_FIELD
+        self.state = self.INITIAL_FIND
         self.markerX = -1
         self.markerY = -1
 
@@ -135,34 +135,13 @@ class StateMachine:
             tickLeft()
 
     def pre_field(self, frame, tango, window):
-
-        # Detect blobs.
-        _, threshold = cv2.threshold(frame, 110, 255,
-                                     cv2.THRESH_BINARY)
-        contours, _ = cv2.findContours(threshold, cv2.RETR_TREE,
-                                       cv2.CHAIN_APPROX_SIMPLE)
-
-        # Searching through every region selected to
-        # find the required polygon.
-        for cnt in contours:
-            area = cv2.contourArea(cnt)
-
-            # Shortlisting the regions based on there area.
-            if area > 400:
-                approx = cv2.approxPolyDP(cnt,
-                                          0.009 * cv2.arcLength(cnt, True), True)
-
-                # Checking if the no. of sides of the selected region is 7.
-                if (len(approx) == 7):
-                    cv2.drawContours(frame, [approx], 0, (0, 0, 255), 5)
-
-        # Showing the image along with outlined arrow.
-
-
-        # Show keypoints
-        cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
-        cv2.imshow(window, frame)
         print("Going To Field")
+        lookDown()
+        forward()
+        time.sleep(1.2)
+        stop()
+        lookForward()
+        self.state = self.FIELD_HUNTING
 
     def field_hunting(self, frame, tango, window):
         print("In Field")
