@@ -360,6 +360,16 @@ class StateMachine:
                 cX, cY = 0, 0
             print((cX, cY))
             cv2.rectangle(frame, (cX - 3, cY - 3), (cX + 3, cY + 3), (255, 255, 255), 5, 1)
+            tilt = cX - 320
+            if (cY < 450):
+                if (tilt > 50):
+                    tickLeft()
+                elif (tilt < -50):
+                    tickRight()
+                else:
+                    tickForward()
+            else:
+                stop()
 
 
             cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
