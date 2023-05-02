@@ -291,6 +291,21 @@ class StateMachine:
                 cv2.putText(frame, str(markerID),
                             (topLeft[0], topLeft[1] - 15), cv2.FONT_HERSHEY_SIMPLEX,
                             0.5, (0, 255, 0), 2)
+
+        # Display the resulting frame
+        cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
+        cv2.imshow(window, frame)
+
+        if(self.markerX>0):
+            if(self.markerX<300):
+                tickRight()
+            elif(self.markerX>340):
+                tickLeft()
+            else:
+                stop()
+                self.state = self.PRE_FIELD
+        else:
+            tickLeft()
         print("Finding")
 
     def return_pre_field(self, frame, tango, window):
