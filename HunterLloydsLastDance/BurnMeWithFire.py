@@ -64,7 +64,7 @@ def tickLeft():
 
 def tickLeftFast():
     left()
-    time.sleep(0.2)
+    time.sleep(0.4)
     stop()
     time.sleep(0.2)
 def tickRight():
@@ -75,7 +75,7 @@ def tickRight():
 
 def tickRightFast():
     right()
-    time.sleep(0.2)
+    time.sleep(0.4)
     stop()
     time.sleep(0.2)
 
