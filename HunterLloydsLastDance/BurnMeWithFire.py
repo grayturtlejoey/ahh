@@ -139,7 +139,7 @@ class StateMachine:
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         # Detect blobs.
-        keypoints = detector.detect(frame)
+        keypoints = detector.detect(gray)
 
 
         # Draw detected blobs as red circles.
