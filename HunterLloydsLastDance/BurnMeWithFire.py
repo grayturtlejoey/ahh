@@ -303,7 +303,7 @@ class StateMachine:
                 tickLeft()
             else:
                 stop()
-                self.state = self.PRE_FIELD
+                self.state = self.return_pre_field()
         else:
             tickLeft()
         print("Finding")
