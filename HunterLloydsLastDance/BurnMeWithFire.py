@@ -54,19 +54,19 @@ def tickLeft():
     left()
     time.sleep(0.15)
     stop()
-    time.sleep(0.2)
+    time.sleep(0.5)
 
 def tickRight():
     right()
     time.sleep(0.15)
     stop()
-    time.sleep(0.2)
+    time.sleep(0.5)
 
 def tickForward():
     forward()
     time.sleep(0.3)
     stop()
-    time.sleep(0.2)
+    time.sleep(0.5)
 
 class StateMachine:
     INITIAL_FIND = 0
