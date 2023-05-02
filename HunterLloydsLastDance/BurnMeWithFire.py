@@ -203,6 +203,13 @@ class StateMachine:
 
 
     def color_id(self, frame, tango, window):
+        if (self.timer <= 0):
+            frame = cv2.putText(frame, self.colorName +" has been selected", (50, 50),
+                                cv2.FONT_HERSHEY_SIMPLEX,
+                                3, (0, 0, 0), 3, cv2.LINE_AA)
+            self.state = self.RETURN_HUNTING
+
+
         self.oldTime = self.newTime
         self.newTime = time.time()
         deltatime = self.newTime-self.oldTime
@@ -235,6 +242,8 @@ class StateMachine:
                             1, (0,0,0), 2, cv2.LINE_AA)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
+
+
 
         print("Show Me The Color")
 
