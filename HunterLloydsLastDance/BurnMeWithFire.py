@@ -52,13 +52,19 @@ def lookDown():
 
 def tickLeft():
     left()
-    time.sleep(0.2)
+    time.sleep(0.15)
     stop()
     time.sleep(0.2)
 
 def tickRight():
     right()
+    time.sleep(0.15)
+    stop()
     time.sleep(0.2)
+
+def tickForward():
+    forward()
+    time.sleep(0.3)
     stop()
     time.sleep(0.2)
 
@@ -152,23 +158,26 @@ class StateMachine:
         # Draw the rectangle around each face
         self.markerX = -1
         self.markerY = -1
+        wi = 0
+        he = 0
         for (x, y, w, h) in faces:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
             self.markerX = int(x+w/2)
             cv2.line(frame, (self.markerX,0), (self.markerX,480), (0, 255, 0), 2)
+            wi = w
+            he = h
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
 
 
-        if(False):
+        if(wi*he<160000):
             if (self.markerX > 0):
                 if (self.markerX < 300):
                     tickRight()
                 elif (self.markerX > 340):
                     tickLeft()
                 else:
-                    stop()
-                    self.state = self.PRE_FIELD
+                    tickForward()
             else:
                 tickLeft()
 
