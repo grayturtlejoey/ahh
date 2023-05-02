@@ -50,8 +50,8 @@ try:
         # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
         color_colormap_dim = color_image.shape
         print(color_image[320, 240])
-        lower = (color_image[320, 240][0] - 10, color_image[320, 240][1] - 10, color_image[320, 240][2] - 10)
-        upper = (color_image[320, 240][0] + 10, color_image[320, 240][1] + 10, color_image[320, 240][2] + 10)
+        lower = (color_image[320, 240][0] - 15, color_image[320, 240][1] - 15, color_image[320, 240][2] - 15)
+        upper = (color_image[320, 240][0] + 15, color_image[320, 240][1] + 15, color_image[320, 240][2] + 15)
         lower = np.asarray(lower)
         upper = np.asarray(upper)
         print(lower)
