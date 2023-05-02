@@ -52,9 +52,15 @@ try:
 
         # Convert images to numpy arrays
         color_image = np.asanyarray(color_frame.get_data())
-        color_image = cv2.convertScaleAbs(color_image, alpha=1, beta=0)
-        color_image = cv2.normalize(color_image, None, alpha=100, beta=155, norm_type=cv2.NORM_MINMAX)
+
         hsv_image = cv2.cvtColor(color_image, cv2.COLOR_BGR2HSV)
+
+        (h, s, v) = cv2.split(hsv_image)
+        s = int(s/2)+127
+        s = np.clip(s, 0, 255)
+        hsv_image = cv2.merge([h, s, v])
+
+        color_image = cv2.cvtColor(hsv_image,cv2.COLOR_HSV2BGR)
 
         timer = cv2.getTickCount()
         fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)
