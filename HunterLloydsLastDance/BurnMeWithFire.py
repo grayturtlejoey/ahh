@@ -12,7 +12,7 @@ from maestro import Controller
 tango = Controller()
 tango.setAccel(1, 0)
 tango.setAccel(0, 0)
-
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 def forward():
     tango.setTarget(1, 6000)
@@ -74,7 +74,7 @@ class StateMachine:
     BLUE = [(0,0,0),(255,255,255)]
 
     def __init__(self):
-        self.state = self.INITIAL_FIND
+        self.state = self.FIELD_HUNTING
         self.markerX = -1
         self.markerY = -1
 
@@ -144,7 +144,16 @@ class StateMachine:
         self.state = self.FIELD_HUNTING
 
     def field_hunting(self, frame, tango, window):
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # Detect the faces
+        faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+        # Draw the rectangle around each face
+        for (x, y, w, h) in faces:
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
+        cv2.imshow(window, frame)
         print("In Field")
+
 
     def color_id(self, frame, tango, window):
         print("Show Me The Color")
