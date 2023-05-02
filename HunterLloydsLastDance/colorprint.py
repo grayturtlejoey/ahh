@@ -69,7 +69,6 @@ try:
 
         print(color)
         print(hsv_image[240, 320])
-        mask = cv2.inRange(hsv_image)
         cv2.namedWindow("window", cv2.WINDOW_AUTOSIZE)
         cv2.imshow("window", mask)
 
