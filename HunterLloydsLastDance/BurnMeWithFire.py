@@ -90,6 +90,7 @@ class StateMachine:
         self.markerX = -1
         self.markerY = -1
         self.falseAlarm = 0
+        self.colorName = "none"
 
 
     def initial_find(self, frame, tango, window):
@@ -192,13 +193,17 @@ class StateMachine:
             self.falseAlarm += 1
             if self.falseAlarm>10:
                 self.state = self.COLOR_ID
+                self.newTime = time.time()
+                self.timer = 5
 
 
         print("In Field")
 
 
     def color_id(self, frame, tango, window):
-
+        self.oldTime = self.newTime
+        self.newTime = time.time()
+        deltatime = self.newTime-self.oldTime
 
         average_color_row = np.average(frame[220:260,300:340], axis=0)
         average_color = np.average(average_color_row, axis=0)
@@ -215,9 +220,17 @@ class StateMachine:
             hsv_image[240, 320][1]<val[1][1] and
             hsv_image[240, 320][2]>val[0][2] and
             hsv_image[240, 320][2]<val[1][2]):
+                if(self.colorName != key):
+                    self.colorName = key
+                    self.timer = 5
+                self.timer -= deltatime
                 color = key
                 print(color)
+
+
         frame = cv2.cvtColor(hsv_image, cv2.COLOR_HSV2BGR)
+        frame = cv2.putText(frame, str(self.timer), (50,50), cv2.FONT_HERSHEY_SIMPLEX,
+                            1, average_color, 2, cv2.LINE_AA)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
 
