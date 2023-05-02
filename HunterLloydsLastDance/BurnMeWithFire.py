@@ -344,7 +344,7 @@ class StateMachine:
         lookDownish()
 
     def color_hunter(self, frame, tango, window):
-            lookDownish()
+            lookDown()
             print("Finding Color")
             self.colorName = "green"
             hsv_image = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
