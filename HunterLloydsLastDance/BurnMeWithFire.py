@@ -171,7 +171,8 @@ class StateMachine:
         cv2.imshow(window, frame)
 
 
-        if(wi*he<160000):
+        if(wi*he<90000):
+            print(wi*he)
             if (self.markerX > 0):
                 if (self.markerX < 300):
                     tickRight()
