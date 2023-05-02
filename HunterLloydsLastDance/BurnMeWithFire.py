@@ -91,6 +91,7 @@ class StateMachine:
         self.markerY = -1
         self.falseAlarm = 0
         self.colorName = "none"
+        self.newTime = time.time()
 
 
     def initial_find(self, frame, tango, window):
