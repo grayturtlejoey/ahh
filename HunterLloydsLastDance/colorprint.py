@@ -34,6 +34,12 @@ profile = pipeline.start(config)
 frames = pipeline.wait_for_frames()
 color_frame = frames.get_color_frame()
 color_image = np.asanyarray(color_frame.get_data())
+colorDict = {"pink":((0,0,0),(255,255,255)),
+             "yellow":((0,0,0),(255,255,255)),
+             "orange":((0,0,0),(255,255,255)),
+             "blue":((0,0,0),(255,255,255)),
+             "green":((0,0,0),(255,255,255)),}
+
 try:
     while True:
 
@@ -51,13 +57,22 @@ try:
 
         # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
         color_colormap_dim = color_image.shape
-        print(hsv_image[320, 240])
         lower = (hsv_image[320, 240][0] - 15, hsv_image[320, 240][1] - 70, hsv_image[320, 240][2] - 40)
         upper = (hsv_image[320, 240][0] + 15, hsv_image[320, 240][1] + 70, hsv_image[320, 240][2] + 40)
         lower = np.asarray(lower)
         upper = np.asarray(upper)
-        print(lower)
-        print(upper)
+        color = "Colors: "
+        for key,val in colorDict:
+            if(hsv_image[320, 240][0]>val[0][0] and
+            hsv_image[320, 240][0]<val[1][0] and
+            hsv_image[320, 240][1]>val[0][1] and
+            hsv_image[320, 240][1]<val[1][1] and
+            hsv_image[320, 240][2]>val[0][2] and
+            hsv_image[320, 240][2]<val[1][2]):
+                color = color+key+" "
+
+
+        print(color,hsv_image,lower,upper,)
         mask = cv2.inRange(hsv_image, lower, upper)
         cv2.namedWindow("window", cv2.WINDOW_AUTOSIZE)
         cv2.imshow("window", mask)
