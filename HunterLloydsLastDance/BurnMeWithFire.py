@@ -97,7 +97,7 @@ class StateMachine:
     BLUE = [(0,0,0),(255,255,255)]
 
     def __init__(self):
-        self.state = self.RETURN_HUNTING
+        self.state = self.INITIAL_FIND
         self.markerX = -1
         self.markerY = -1
         self.falseAlarm = 0
