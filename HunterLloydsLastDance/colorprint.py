@@ -71,8 +71,8 @@ try:
             hsv_image[320, 240][2]<val[1][2]):
                 color = color+key+" "
 
-
-        print(color,hsv_image,lower,upper,)
+        print(color)
+        print(hsv_image,lower,upper)
         mask = cv2.inRange(hsv_image, lower, upper)
         cv2.namedWindow("window", cv2.WINDOW_AUTOSIZE)
         cv2.imshow("window", mask)
