@@ -206,7 +206,7 @@ class StateMachine:
         if (self.timer <= 0):
             frame = cv2.putText(frame, self.colorName +" has been selected", (50, 50),
                                 cv2.FONT_HERSHEY_SIMPLEX,
-                                2, (0, 0, 0), 2, cv2.LINE_AA)
+                                1, (0, 0, 0), 2, cv2.LINE_AA)
             cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
             cv2.imshow(window, frame)
             time.sleep(2)
