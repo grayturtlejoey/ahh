@@ -65,7 +65,7 @@ try:
             hsv_image[240, 320][2]>val[0][2] and
             hsv_image[240, 320][2]<val[1][2]):
                 color = color+key+" "
-                mask = cv2.inRange(hsv_image, np.asarray(val[0]),np.asarray([1]))
+                mask = cv2.inRange(hsv_image, np.asarray(colorDict[key][0]),np.asarray(colorDict[key][1]))
 
 
         print(color)
