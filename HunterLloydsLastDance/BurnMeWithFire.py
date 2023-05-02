@@ -14,6 +14,12 @@ tango.setAccel(1, 0)
 tango.setAccel(0, 0)
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
+colorDict = {"pink":((160,130,171),(175,230,256)),
+             "yellow":((30,150,140),(40,240,256)),
+             "orange":((10,130,200),(30,220,256)),
+             "blue":((85,200,140),(100,256,256)),
+             "green":((50,120,160),(70,210,256)),}
+
 def forward():
     tango.setTarget(1, 6000)
     tango.setTarget(0, 5000)
@@ -199,8 +205,19 @@ class StateMachine:
         average_color = [int(average_color[0]),int(average_color[1]),int(average_color[2])]
         print(average_color)
         cv2.rectangle(frame, (300, 220), (340, 260), average_color, -1)
-        #hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        #frame = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+        hsv_image = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+
+        for key,val in colorDict.items():
+            if(hsv_image[240, 320][0]>val[0][0] and
+            hsv_image[240, 320][0]<val[1][0] and
+            hsv_image[240, 320][1]>val[0][1] and
+            hsv_image[240, 320][1]<val[1][1] and
+            hsv_image[240, 320][2]>val[0][2] and
+            hsv_image[240, 320][2]<val[1][2]):
+                color = color+key+" "
+                mask = cv2.inRange(hsv_image, np.asarray(colorDict[key][0]),np.asarray(colorDict[key][1]))
+        frame = cv2.cvtColor(hsv_image, cv2.COLOR_HSV2BGR)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
 
