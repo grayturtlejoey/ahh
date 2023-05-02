@@ -57,7 +57,7 @@ def lookDown():
     tango.setTarget(4,2000)
 
 def lookDownish():
-    tango.setTarget(4,4000)
+    tango.setTarget(4,3300)
 
 def tickLeft():
     left()
