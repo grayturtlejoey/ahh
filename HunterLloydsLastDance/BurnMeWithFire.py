@@ -86,7 +86,7 @@ class StateMachine:
     BLUE = [(0,0,0),(255,255,255)]
 
     def __init__(self):
-        self.state = self.COLOR_ID
+        self.state = self.RETURN_HUNTING
         self.markerX = -1
         self.markerY = -1
         self.falseAlarm = 0
@@ -211,6 +211,8 @@ class StateMachine:
             cv2.imshow(window, frame)
             time.sleep(2)
             self.state = self.RETURN_HUNTING
+            self.markerX = -1
+            self.markerY = -1
             return()
 
 
@@ -253,6 +255,41 @@ class StateMachine:
 
 
     def return_hunting(self, frame, tango, window):
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_250)  # Use 5x5 dictionary to find markers
+        parameters = aruco.DetectorParameters_create()  # Marker detection parameters
+        # lists of ids and the corners beloning to each id
+        corners, ids, rejected_img_points = aruco.detectMarkers(gray, aruco_dict, parameters=parameters, )
+        if len(corners) > 0:
+            # flatten the ArUco IDs list
+            ids = ids.flatten()
+            # loop over the detected ArUCo corners
+            for (markerCorner, markerID) in zip(corners, ids):
+                # extract the marker corners (which are always returned in
+                # top-left, top-right, bottom-right, and bottom-left order)
+                corners = markerCorner.reshape((4, 2))
+                (topLeft, topRight, bottomRight, bottomLeft) = corners
+                # convert each of the (x, y)-coordinate pairs to integers
+                topRight = (int(topRight[0]), int(topRight[1]))
+                bottomRight = (int(bottomRight[0]), int(bottomRight[1]))
+                bottomLeft = (int(bottomLeft[0]), int(bottomLeft[1]))
+                topLeft = (int(topLeft[0]), int(topLeft[1]))
+                cv2.line(frame, topLeft, topRight, (0, 255, 0), 2)
+                cv2.line(frame, topRight, bottomRight, (0, 255, 0), 2)
+                cv2.line(frame, bottomRight, bottomLeft, (0, 255, 0), 2)
+                cv2.line(frame, bottomLeft, topLeft, (0, 255, 0), 2)
+                # compute and draw the center (x, y)-coordinates of the ArUco
+                # marker
+                cX = int((topLeft[0] + bottomRight[0]) / 2.0)
+                cY = int((topLeft[1] + bottomRight[1]) / 2.0)
+                if (markerID == 22):
+                    self.markerX = cX
+                    self.markerY = cY
+                cv2.circle(frame, (cX, cY), 4, (0, 0, 255), -1)
+                # draw the ArUco marker ID on the image
+                cv2.putText(frame, str(markerID),
+                            (topLeft[0], topLeft[1] - 15), cv2.FONT_HERSHEY_SIMPLEX,
+                            0.5, (0, 255, 0), 2)
         print("Finding")
 
     def return_pre_field(self, frame, tango, window):
