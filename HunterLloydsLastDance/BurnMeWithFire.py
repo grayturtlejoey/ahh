@@ -83,6 +83,7 @@ class StateMachine:
         self.state = self.FIELD_HUNTING
         self.markerX = -1
         self.markerY = -1
+        self.falseAlarm = 0
 
 
     def initial_find(self, frame, tango, window):
@@ -180,6 +181,11 @@ class StateMachine:
                     tickForward()
             else:
                 tickLeft()
+        else:
+            self.falseAlarm += 1
+            if self.falseAlarm>10:
+                self.state = self.COLOR_ID
+
 
         print("In Field")
 
