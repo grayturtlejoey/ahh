@@ -53,13 +53,12 @@ try:
         lower = (color_image[320, 240][0] - 10, color_image[320, 240][1] - 10, color_image[320, 240][2] - 10)
         upper = (color_image[320, 240][0] + 10, color_image[320, 240][1] + 10, color_image[320, 240][2] + 10)
         lower = np.asarray(lower)
-        upper = np.asanyarray(upper)
+        upper = np.asarray(upper)
         print(lower)
         print(upper)
         mask = cv2.inRange(color_image, lower, upper)
-        color_image = cv2.multiply(color_image, mask)
         cv2.namedWindow("window", cv2.WINDOW_AUTOSIZE)
-        cv2.imshow("window", color_frame)
+        cv2.imshow("window", mask)
 
         # Show images
         key = cv2.waitKey(1)
