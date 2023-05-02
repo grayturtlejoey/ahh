@@ -142,16 +142,36 @@ class StateMachine:
         stop()
         lookForward()
         self.state = self.FIELD_HUNTING
+        self.markerX = -1
+        self.markerY = -1
 
     def field_hunting(self, frame, tango, window):
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         # Detect the faces
         faces = face_cascade.detectMultiScale(gray, 1.3 , 5)
         # Draw the rectangle around each face
+        self.markerX = -1
+        self.markerY = -1
         for (x, y, w, h) in faces:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+            self.markerX = int(x+w/2)
+            cv2.line(frame, (self.markerX,0), (self.markerX,480), (0, 255, 0), 2)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
+
+
+        if(False):
+            if (self.markerX > 0):
+                if (self.markerX < 300):
+                    tickRight()
+                elif (self.markerX > 340):
+                    tickLeft()
+                else:
+                    stop()
+                    self.state = self.PRE_FIELD
+            else:
+                tickLeft()
+
         print("In Field")
 
 
