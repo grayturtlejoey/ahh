@@ -60,6 +60,7 @@ try:
         cv2.namedWindow("window", cv2.WINDOW_AUTOSIZE)
         cv2.imshow("window", mask)
 
+
         # Show images
         key = cv2.waitKey(1)
 
