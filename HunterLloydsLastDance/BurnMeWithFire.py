@@ -171,7 +171,7 @@ class StateMachine:
         cv2.imshow(window, frame)
 
 
-        if(wi*he<90000):
+        if(wi*he<35000):
             print(wi*he)
             if (self.markerX > 0):
                 if (self.markerX < 300):
