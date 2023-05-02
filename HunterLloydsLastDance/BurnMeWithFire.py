@@ -135,7 +135,19 @@ class StateMachine:
             tickLeft()
 
     def pre_field(self, frame, tango, window):
+        detector = cv2.SimpleBlobDetector()
 
+        # Detect blobs.
+        keypoints = detector.detect(frame)
+
+        # Draw detected blobs as red circles.
+        # cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS ensures the size of the circle corresponds to the size of blob
+        im_with_keypoints = cv2.drawKeypoints(frame, keypoints, np.array([]), (0, 0, 255),
+                                              cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+
+        # Show keypoints
+        cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
+        cv2.imshow(window, frame)
         print("Going To Field")
 
     def field_hunting(self, frame, tango, window):
