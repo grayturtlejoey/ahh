@@ -95,6 +95,7 @@ class StateMachine:
         self.timer = 5
 
 
+
     def initial_find(self, frame, tango, window):
         print("Finding")
 
