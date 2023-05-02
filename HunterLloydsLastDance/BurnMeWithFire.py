@@ -80,7 +80,7 @@ class StateMachine:
     BLUE = [(0,0,0),(255,255,255)]
 
     def __init__(self):
-        self.state = self.FIELD_HUNTING
+        self.state = self.COLOR_ID
         self.markerX = -1
         self.markerY = -1
         self.falseAlarm = 0
@@ -192,7 +192,11 @@ class StateMachine:
 
 
     def color_id(self, frame, tango, window):
+        cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
+        cv2.imshow(window, frame)
+        cv2.rectangle(frame, (300, 220), (340, 260), (255, 0, 0), 2)
         print("Show Me The Color")
+
 
     def return_hunting(self, frame, tango, window):
         print("Finding")
