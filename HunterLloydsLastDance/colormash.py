@@ -41,11 +41,6 @@ colorDict = {"pink":((154,20,111),(184,255,255)),
              "green":((42,20,67),(70,255,200)),}
 alpha = 1
 beta = 0
-def updateAlpha(a):
-    alpha = a
-
-def updateBeta(a):
-    beta = a
 
 
 try:
@@ -57,7 +52,7 @@ try:
 
         # Convert images to numpy arrays
         color_image = np.asanyarray(color_frame.get_data())
-        color_image = cv2.convertScaleAbs(color_image, alpha=alpha, beta=beta)
+        color_image = cv2.convertScaleAbs(color_image, alpha=2, beta=-20)
         color_image = cv2.normalize(color_image, None, alpha=0, beta=200, norm_type=cv2.NORM_MINMAX)
         hsv_image = cv2.cvtColor(color_image, cv2.COLOR_BGR2HSV)
 
@@ -69,8 +64,6 @@ try:
 
 
         cv2.namedWindow("window", cv2.WINDOW_AUTOSIZE)
-        cv2.createTrackbar('alpha', "window", -10, 10, updateAlpha)
-        cv2.createTrackbar('beta', "window", -127, 127, updateBeta)
         cv2.imshow("window", color_image)
 
 
