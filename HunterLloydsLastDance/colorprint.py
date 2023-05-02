@@ -35,8 +35,8 @@ frames = pipeline.wait_for_frames()
 color_frame = frames.get_color_frame()
 color_image = np.asanyarray(color_frame.get_data())
 colorDict = {"pink":((0,0,0),(255,255,255)),
-             "yellow":((11,153,88),(42,293,168)),
-             "orange":((0,185,108),(25,325,188)),
+             "yellow":((20,153,88),(42,293,168)),
+             "orange":((0,185,108),(20,325,188)),
              "blue":((82,185,88),(112,325,168)),
              "green":((0,0,0),(255,255,255)),}
 
