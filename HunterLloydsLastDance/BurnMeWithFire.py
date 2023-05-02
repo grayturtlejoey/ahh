@@ -203,9 +203,9 @@ class StateMachine:
         average_color_row = np.average(frame[220:260,300:340], axis=0)
         average_color = np.average(average_color_row, axis=0)
         average_color = [int(average_color[0]),int(average_color[1]),int(average_color[2])]
-        print(average_color)
         cv2.rectangle(frame, (300, 220), (340, 260), average_color, -1)
         hsv_image = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        print(average_color,hsv_image[240,320])
 
 
         for key,val in colorDict.items():
