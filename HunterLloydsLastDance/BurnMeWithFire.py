@@ -56,6 +56,9 @@ def lookForward():
 def lookDown():
     tango.setTarget(4,2000)
 
+def lookDownish():
+    tango.setTarget(4,4000)
+
 def tickLeft():
     left()
     time.sleep(0.2)
@@ -97,7 +100,7 @@ class StateMachine:
     BLUE = [(0,0,0),(255,255,255)]
 
     def __init__(self):
-        self.state = self.INITIAL_FIND
+        self.state = self.COLOR_HUNTER
         self.markerX = -1
         self.markerY = -1
         self.falseAlarm = 0
@@ -321,9 +324,37 @@ class StateMachine:
 
     def return_pre_field(self, frame, tango, window):
         print("Going To Field")
+        lookDown()
+        forward()
+        print("Going To Field")
+        tickForward()
+        print("Going To Field")
+        tickForward()
+        print("Going To Field")
+        stop()
+        lookForward()
+        self.state = self.FIELD_HUNTING
+        self.markerX = -1
+        self.markerY = -1
+        print("Finding Color")
+        tickForward()
+        tickForward()
+        tickForward()
+        tickForward()
+        lookDownish()
 
-    def color_hunter(self, frame, tango, window): \
+    def color_hunter(self, frame, tango, window):
             print("Finding Color")
+            self.colorName = "yellow"
+            hsv_image = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+            mask = cv2.inRange(hsv_image, colorDict[self.colorName,0], colorDict[self.colorName,0])
+    # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
+            frame = cv2.cvtColor(hsv_image, cv2.COLOR_HSV_BGR)
+            frame = cv2.bitwise_and(frame,frame, mask = mask)
+
+            cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
+            cv2.imshow(window, frame)
+
 
     def done(self, frame, tango, window):
         print("Fini")
