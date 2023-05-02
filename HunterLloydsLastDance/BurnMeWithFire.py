@@ -92,7 +92,7 @@ class StateMachine:
         self.falseAlarm = 0
         self.colorName = "none"
         self.newTime = time.time()
-        self.timer = 5
+        self.timer = 7
 
 
     def initial_find(self, frame, tango, window):
@@ -196,7 +196,7 @@ class StateMachine:
             if self.falseAlarm>10:
                 self.state = self.COLOR_ID
                 self.newTime = time.time()
-                self.timer = 5
+                self.timer = 7
 
 
         print("In Field")
@@ -224,7 +224,7 @@ class StateMachine:
             hsv_image[240, 320][2]<val[1][2]):
                 if(self.colorName != key):
                     self.colorName = key
-                    self.timer = 5
+                    self.timer = 7
                 self.timer -= deltatime
                 color = key
                 print(color)
