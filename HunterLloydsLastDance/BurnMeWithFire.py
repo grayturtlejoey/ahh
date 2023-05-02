@@ -231,7 +231,7 @@ class StateMachine:
 
 
         frame = cv2.cvtColor(hsv_image, cv2.COLOR_HSV2BGR)
-        frame = cv2.putText(frame, str(self.timer), (50,50), cv2.FONT_HERSHEY_SIMPLEX,
+        frame = cv2.putText(frame, str(round(self.timer,2)), (50,50), cv2.FONT_HERSHEY_SIMPLEX,
                             1, average_color, 2, cv2.LINE_AA)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
