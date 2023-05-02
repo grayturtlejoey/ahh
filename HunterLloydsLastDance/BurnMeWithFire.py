@@ -193,13 +193,13 @@ class StateMachine:
 
     def color_id(self, frame, tango, window):
         cv2.rectangle(frame, (300, 220), (340, 260), (255, 0, 0), 2)
-        hsv = cv2.cvtColor(color_image, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         average_color_row = np.average(hsv[220:260,300:340], axis=0)
         average_color = np.average(average_color_row, axis=0)
         average_color = [int(average_color[0]),int(average_color[1]),int(average_color[2])]
         print(average_color)
         cv2.rectangle(hsv, (300, 220), (340, 260), average_color, 2)
-        frame = cv2.cvtColor(color_image, cv2.COLOR_HSV2BGR)
+        frame = cv2.cvtColor(frame, cv2.COLOR_HSV2BGR)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
 
