@@ -92,7 +92,7 @@ class StateMachine:
         self.falseAlarm = 0
         self.colorName = "None"
         self.newTime = time.time()
-        self.timer = 7
+        self.timer = 5
 
 
     def initial_find(self, frame, tango, window):
@@ -196,7 +196,7 @@ class StateMachine:
             if self.falseAlarm>10:
                 self.state = self.COLOR_ID
                 self.newTime = time.time()
-                self.timer = 7
+                self.timer = 5
 
 
         print("In Field")
@@ -206,8 +206,9 @@ class StateMachine:
         if (self.timer <= 0):
             frame = cv2.putText(frame, self.colorName +" has been selected", (50, 50),
                                 cv2.FONT_HERSHEY_SIMPLEX,
-                                3, (0, 0, 0), 3, cv2.LINE_AA)
+                                2, (0, 0, 0), 2, cv2.LINE_AA)
             self.state = self.RETURN_HUNTING
+            return()
 
 
         self.oldTime = self.newTime
@@ -231,7 +232,7 @@ class StateMachine:
             hsv_image[240, 320][2]<val[1][2]):
                 if(self.colorName != key):
                     self.colorName = key
-                    self.timer = 7
+                    self.timer = 5
                 self.timer -= deltatime
                 color = key
                 print(color)
