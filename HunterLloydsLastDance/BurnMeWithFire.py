@@ -92,6 +92,7 @@ class StateMachine:
         self.falseAlarm = 0
         self.colorName = "none"
         self.newTime = time.time()
+        self.timer = 5
 
 
     def initial_find(self, frame, tango, window):
