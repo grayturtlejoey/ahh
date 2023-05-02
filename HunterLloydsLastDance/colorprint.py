@@ -52,6 +52,8 @@ try:
         print(color_image[320, 240])
         lower = (color_image[320, 240][0] - 10, color_image[320, 240][1] - 10, color_image[320, 240][2] - 10)
         upper = (color_image[320, 240][0] + 10, color_image[320, 240][1] + 10, color_image[320, 240][2] + 10)
+        lower = np.asarray(lower)
+        upper = np.asanyarray(upper)
         print(lower)
         print(upper)
         mask = cv2.inRange(color_image, lower, upper)
