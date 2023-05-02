@@ -146,7 +146,7 @@ class StateMachine:
     def field_hunting(self, frame, tango, window):
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         # Detect the faces
-        faces = face_cascade.detectMultiScale(gray, 1.1, 5)
+        faces = face_cascade.detectMultiScale(gray, 1.5 , 5)
         # Draw the rectangle around each face
         for (x, y, w, h) in faces:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
