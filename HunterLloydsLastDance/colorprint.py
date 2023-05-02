@@ -62,7 +62,7 @@ try:
         lower = np.asarray(lower)
         upper = np.asarray(upper)
         color = "Colors: "
-        for key,val in colorDict:
+        for key,val in colorDict.items():
             if(hsv_image[320, 240][0]>val[0][0] and
             hsv_image[320, 240][0]<val[1][0] and
             hsv_image[320, 240][1]>val[0][1] and
