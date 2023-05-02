@@ -53,7 +53,7 @@ try:
 
         timer = cv2.getTickCount()
         fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)
-
+        mask = cv2.inRange(hsv_image, np.asarray((0,0,0)),np.asarray((127,127,127)))
         # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
         color_colormap_dim = color_image.shape
         color = "Colors: "
@@ -66,6 +66,7 @@ try:
             hsv_image[240, 320][2]<val[1][2]):
                 color = color+key+" "
                 mask = cv2.inRange(hsv_image, np.asarray(val[0]),np.asarray([1]))
+
 
         print(color)
         print(hsv_image[240, 320])
