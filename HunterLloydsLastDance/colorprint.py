@@ -56,23 +56,20 @@ try:
 
         # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
         color_colormap_dim = color_image.shape
-        lower = (hsv_image[320, 240][0] - 15, hsv_image[320, 240][1] - 70, hsv_image[320, 240][2] - 40)
-        upper = (hsv_image[320, 240][0] + 15, hsv_image[320, 240][1] + 70, hsv_image[320, 240][2] + 40)
-        lower = np.asarray(lower)
-        upper = np.asarray(upper)
         color = "Colors: "
         for key,val in colorDict.items():
-            if(hsv_image[320, 240][0]>val[0][0] and
-            hsv_image[320, 240][0]<val[1][0] and
-            hsv_image[320, 240][1]>val[0][1] and
-            hsv_image[320, 240][1]<val[1][1] and
-            hsv_image[320, 240][2]>val[0][2] and
-            hsv_image[320, 240][2]<val[1][2]):
+            if(hsv_image[240, 320][0]>val[0][0] and
+            hsv_image[240, 320][0]<val[1][0] and
+            hsv_image[240, 320][1]>val[0][1] and
+            hsv_image[240, 320][1]<val[1][1] and
+            hsv_image[240, 320][2]>val[0][2] and
+            hsv_image[240, 320][2]<val[1][2]):
                 color = color+key+" "
+                mask = cv2.inRange(hsv_image, np.asarray(val[0]),np.asarray([1]))
 
         print(color)
-        print(hsv_image[320, 240],lower,upper)
-        mask = cv2.inRange(hsv_image, lower, upper)
+        print(hsv_image[240, 320])
+        mask = cv2.inRange(hsv_image)
         cv2.namedWindow("window", cv2.WINDOW_AUTOSIZE)
         cv2.imshow("window", mask)
 
