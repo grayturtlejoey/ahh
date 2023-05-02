@@ -53,7 +53,7 @@ try:
         # Convert images to numpy arrays
         color_image = np.asanyarray(color_frame.get_data())
         color_image = cv2.convertScaleAbs(color_image, alpha=1.5, beta=-127)
-        #color_image = cv2.normalize(color_image, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
+        color_image = cv2.normalize(color_image, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
         hsv_image = cv2.cvtColor(color_image, cv2.COLOR_BGR2HSV)
 
         timer = cv2.getTickCount()
