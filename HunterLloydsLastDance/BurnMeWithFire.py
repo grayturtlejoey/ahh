@@ -192,9 +192,10 @@ class StateMachine:
 
 
     def color_id(self, frame, tango, window):
+        cv2.rectangle(frame, (300, 220), (340, 260), (255, 0, 0), 2)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
-        cv2.rectangle(frame, (300, 220), (340, 260), (255, 0, 0), 2)
+
         print("Show Me The Color")
 
 
