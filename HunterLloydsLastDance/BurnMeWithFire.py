@@ -345,7 +345,7 @@ class StateMachine:
 
     def color_hunter(self, frame, tango, window):
             print("Finding Color")
-            self.colorName = "yellow"
+            self.colorName = "green"
             hsv_image = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
             mask = cv2.inRange(hsv_image, colorDict[self.colorName][0], colorDict[self.colorName][1])
     # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
