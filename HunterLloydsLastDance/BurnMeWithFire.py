@@ -215,8 +215,8 @@ class StateMachine:
             hsv_image[240, 320][1]<val[1][1] and
             hsv_image[240, 320][2]>val[0][2] and
             hsv_image[240, 320][2]<val[1][2]):
-                color = color+key+" "
-                mask = cv2.inRange(hsv_image, np.asarray(colorDict[key][0]),np.asarray(colorDict[key][1]))
+                color = key
+                print(color)
         frame = cv2.cvtColor(hsv_image, cv2.COLOR_HSV2BGR)
         cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
         cv2.imshow(window, frame)
