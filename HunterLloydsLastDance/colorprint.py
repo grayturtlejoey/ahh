@@ -2,7 +2,6 @@ import pyrealsense2 as rs
 import numpy as np
 import cv2
 
-
 # Configure depth and color streams
 pipeline = rs.pipeline()
 config = rs.config()
@@ -48,24 +47,17 @@ try:
         timer = cv2.getTickCount()
         fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)
 
-
         # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
         color_colormap_dim = color_image.shape
-        print(color_image[320,240])
-
-        mask = cv2.inRange(color_image,(color_image[320,240,0]-10,
-                                        color_image[320,240,1]-10,
-                                        color_image[320,240,2]-10),
-                           (color_image[320, 240, 0] + 10,
-                            color_image[320, 240, 1] + 10,
-                            color_image[320, 240, 2] + 10)
-                           )
-        color_image = cv2.multiply(color_image,mask)
+        print(color_image[320, 240])
+        lower = (color_image[320, 240][0] - 10, color_image[320, 240][1] - 10, color_image[320, 240][2] - 10)
+        upper = (color_image[320, 240][0] + 10, color_image[320, 240][1] + 10, color_image[320, 240][2] + 10)
+        print(lower)
+        print(upper)
+        mask = cv2.inRange(color_image, lower, upper)
+        color_image = cv2.multiply(color_image, mask)
         cv2.namedWindow("window", cv2.WINDOW_AUTOSIZE)
         cv2.imshow("window", color_frame)
-
-
-
 
         # Show images
         key = cv2.waitKey(1)
