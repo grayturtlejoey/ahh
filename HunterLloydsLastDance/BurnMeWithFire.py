@@ -347,7 +347,6 @@ class StateMachine:
     def color_hunter(self, frame, tango, window):
             lookDown()
             print("Finding Color")
-            self.colorName = "orange"
             hsv_image = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
             mask = cv2.inRange(hsv_image, colorDict[self.colorName][0], colorDict[self.colorName][1])
     # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
@@ -360,7 +359,7 @@ class StateMachine:
             else:
                 cX, cY = 0, 0
             print((cX, cY))
-            cv2.rectangle(frame, (cX - 3, cY - 3), (cX + 3, cY + 3), (255, 255, 255), 5, 1)
+            cv2.rectangle(mask, (cX - 3, cY - 3), (cX + 3, cY + 3), (255, 255, 255), 5, 1)
             tilt = cX - 320
             if (cY < 430):
                 if (tilt > 50):
@@ -388,7 +387,7 @@ class StateMachine:
 
 
             cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
-            cv2.imshow(window, frame)
+            cv2.imshow(window, mask)
 
 
     def done(self, frame, tango, window):
