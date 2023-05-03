@@ -104,7 +104,7 @@ class StateMachine:
         self.markerX = -1
         self.markerY = -1
         self.falseAlarm = 0
-        self.colorName = "None"
+        self.colorName = "green"
         self.newTime = time.time()
         self.timer = 5
         self.targetFound = 0
@@ -113,6 +113,7 @@ class StateMachine:
 
     def initial_find(self, frame, tango, window):
         print("Finding")
+        self.colorName = "none"
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         aruco_dict = aruco.Dictionary_get(aruco.DICT_6X6_250)  # Use 5x5 dictionary to find markers
