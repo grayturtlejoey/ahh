@@ -199,9 +199,9 @@ class StateMachine:
         if(wi*he<35000):
             print(wi*he)
             if (self.markerX > 0):
-                if (self.markerX < 270):
+                if (self.markerX < 280):
                     tickRight()
-                elif (self.markerX > 370):
+                elif (self.markerX > 360):
                     tickLeft()
                 else:
                     tickForward()
