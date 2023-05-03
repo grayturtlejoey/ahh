@@ -335,7 +335,7 @@ class StateMachine:
         print("Going To Field")
         stop()
         lookForward()
-        self.state = self.FIELD_HUNTING
+        self.state = self.COLOR_HUNTER
         self.markerX = -1
         self.markerY = -1
         print("Finding Color")
