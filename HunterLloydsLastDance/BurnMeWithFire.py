@@ -99,6 +99,7 @@ class StateMachine:
     DONE = 7
     BLUE = [(0,0,0),(255,255,255)]
 
+
     def __init__(self):
         self.state = 0
         self.markerX = -1
