@@ -104,7 +104,7 @@ class StateMachine:
         self.markerX = -1
         self.markerY = -1
         self.falseAlarm = 0
-        self.colorName = "Green"
+        self.colorName = "green"
         self.newTime = time.time()
         self.timer = 5
         self.targetFound = 0
