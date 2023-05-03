@@ -107,6 +107,7 @@ class StateMachine:
         self.colorName = "None"
         self.newTime = time.time()
         self.timer = 5
+        self.targetFound = 0
 
 
 
@@ -361,15 +362,29 @@ class StateMachine:
             print((cX, cY))
             cv2.rectangle(frame, (cX - 3, cY - 3), (cX + 3, cY + 3), (255, 255, 255), 5, 1)
             tilt = cX - 320
-            if (cY < 450):
+            if (cY < 430):
                 if (tilt > 50):
                     tickLeft()
                 elif (tilt < -50):
                     tickRight()
                 else:
                     tickForward()
+                    self.targetFound+=1
             else:
-                stop()
+                if(self.targetFound>4):
+                    self.state=self.DONE
+                    tickForward()
+                    print("Finding Color")
+                    tickForward()
+                    print("Finding Color")
+                    tickForward()
+                    print("Finding Color")
+                    tickForward()
+                    print("Finding Color")
+                    lookForward()
+
+
+
 
 
             cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
@@ -377,6 +392,7 @@ class StateMachine:
 
 
     def done(self, frame, tango, window):
+
         print("Fini")
 
     def tick(self, frame, tango, window):
