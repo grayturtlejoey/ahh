@@ -100,11 +100,11 @@ class StateMachine:
     BLUE = [(0,0,0),(255,255,255)]
 
     def __init__(self):
-        self.state = self.COLOR_HUNTER
+        self.state = self.INITIAL_FIND
         self.markerX = -1
         self.markerY = -1
         self.falseAlarm = 0
-        self.colorName = "green"
+        self.colorName = "None"
         self.newTime = time.time()
         self.timer = 5
         self.targetFound = 0
