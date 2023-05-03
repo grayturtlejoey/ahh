@@ -100,7 +100,7 @@ class StateMachine:
     BLUE = [(0,0,0),(255,255,255)]
 
     def __init__(self):
-        self.state = 6
+        self.state = 4
         self.markerX = -1
         self.markerY = -1
         self.falseAlarm = 0
